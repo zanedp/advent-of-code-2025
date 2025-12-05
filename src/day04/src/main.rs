@@ -36,6 +36,7 @@ fn count_neighboring_paper(grid: &Vec<Vec<char>>, row: usize, col: usize) -> usi
 fn main() {
     // let input = include_str!("sample-input.txt");
     let input = include_str!("input.txt");
+    println!("--- Part 1 ---");
     let grid = parse_input(input);
     let mut num_accessible = 0;
     for row in 0..grid.len() {
@@ -52,4 +53,35 @@ fn main() {
         }
     }
     println!("Number of accessible squares: {}", num_accessible);
+    println!();
+
+    println!("--- Part 2 ---");
+    let mut grid = parse_input(input);
+    let mut total_removed = 0;
+    loop {
+        let mut new_grid = grid.clone();
+        let mut num_removed_this_round = 0;
+        for row in 0..grid.len() {
+            for col in 0..grid[0].len() {
+                if grid[row][col] == '.' || grid[row][col] == 'x' {
+                    // don't need to move anything out of empty squares.
+                    continue;
+                }
+                let count = count_neighboring_paper(&grid, row, col);
+                if count < 4 {
+                    // println!("({}, {}) has {} neighboring paper pieces", row, col, count);
+                    new_grid[row][col] = 'x';
+                    num_removed_this_round += 1;
+                }
+            }
+        }
+        if num_removed_this_round == 0 {
+            // can't remove any more
+            break;
+        }
+        // println!("Removed {} pieces this round", num_removed_this_round);
+        total_removed += num_removed_this_round;
+        grid = new_grid;
+    }
+    println!("Number of removed rolls: {}", total_removed);
 }
