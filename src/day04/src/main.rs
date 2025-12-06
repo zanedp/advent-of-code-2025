@@ -34,8 +34,8 @@ fn count_neighboring_paper(grid: &Vec<Vec<char>>, row: usize, col: usize) -> usi
 }
 
 fn main() {
-    // let input = include_str!("sample-input.txt");
-    let input = include_str!("input.txt");
+    let input = include_str!("sample-input.txt");
+    // let input = include_str!("input.txt");
     println!("--- Part 1 ---");
     let grid = parse_input(input);
     let mut num_accessible = 0;

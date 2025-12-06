@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 fn parse_input(input: &str) -> (Vec<(u64, u64)>, Vec<u64>) {
     let input = input.replace("\r\n", "\n"); // normalize line endings
     let mut sections = input.split("\n\n");
