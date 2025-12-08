@@ -31,9 +31,9 @@ fn main() {
     let mut cur_row = input_grid[0].clone();
     print_row(&cur_row);
     for next_row in input_grid.iter().skip(1) {
-        let (beamed_next_row, new_split_count) = beam_through_next_row(&cur_row, next_row);
+        let (beamed_next_row, next_row_split_count) = beam_through_next_row(&cur_row, next_row);
         print_row(&beamed_next_row);
-        split_count += new_split_count;
+        split_count += next_row_split_count;
         cur_row = beamed_next_row;
     }
     println!("Split count: {}", split_count);
