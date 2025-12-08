@@ -34,8 +34,7 @@ fn main() {
         let (beamed_next_row, new_split_count) = beam_through_next_row(&cur_row, next_row);
         print_row(&beamed_next_row);
         split_count += new_split_count;
-        cur_row = beamed_next_row.clone();
+        cur_row = beamed_next_row;
     }
-
     println!("Split count: {}", split_count);
 }
